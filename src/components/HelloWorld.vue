@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{ data }}</h1>
+    <h2 class="text-green">{{ data }}</h2>
   </div>  
 </template>
 
@@ -9,7 +9,6 @@ export default {
   name: 'HelloWorld',
   props: {
     data: String
-
   }
 }
 </script>

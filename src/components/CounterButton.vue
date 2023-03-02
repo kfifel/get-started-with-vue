@@ -1,5 +1,10 @@
 <template>
-    <button @click="counter++">{{counter}}</button>
+    <button 
+        class="btn btn-success"
+        @click="counter++"
+    >
+        {{counter}}
+    </button>
 </template>
 
 <script >
