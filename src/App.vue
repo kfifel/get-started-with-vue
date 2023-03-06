@@ -1,25 +1,38 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Quiz</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li 
-            v-for="(nav, index) of navs"
-            :key="index"
-            class="nav-item"  
-          >
-            <router-link :to="nav.path">
-              {{ nav.title }}
-            </router-link>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <router-view/>
+    <div>
+      <aside>
+        <SideBar />
+      </aside>
+    </div> 
+
+    <div class="">
+        <main>
+            <div class="main-container">
+                <div class="stepper-bar d-none">
+                    <div class="stepper-item bg-color-1-50" id="stepper-item-1">
+                        <box-icon name='info-circle' size='lg'></box-icon>
+                    </div>
+                    <div class="stepper-line" id="stepper-line-1"></div>
+                    <div class="stepper-item" id="stepper-item-2">
+                        <box-icon name='question-mark' size='lg'></box-icon>
+                    </div>
+                    <div class="stepper-line" id="stepper-line-2"></div>
+                    <div class="stepper-item" id="stepper-item-3">
+                        <box-icon name='last-page' size='lg'></box-icon>
+                    </div>
+                </div>
+                <div class="progress d-none">
+                    <span id="progress-counter">0%</span><div class="progress-bar"></div>
+                </div>
+                <div class="container bg-color-1-75">
+                    
+                    <router-view/>
+
+                </div>
+            </div>
+        </main>
+    </div>
   </div>
 </template>
 
@@ -27,20 +40,10 @@
 
 </style>
 <script>
-
+import SideBar from '@/components/SideBar.vue'
 export default{
-  data() {
-    return {
-      navs: [ 
-        {
-          path :'/',
-          title: 'home'
-        }, 
-        {
-          path :'/about',
-          title: 'about'
-        }]
-    }
+  components:{
+    SideBar,
   }
 }
 
