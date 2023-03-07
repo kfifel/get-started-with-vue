@@ -7,16 +7,23 @@
             <span id="counter-question">20</span>
         </div>
     </h2>
-    <div class="answer" v-for="(choice, i) of questions[index].choices" :key="i">
-      <label :for="i" :id="'choice'+i" class="answer-items bg-color-2-50">
+    <div class="answer" v-for="(choice, i) of questions[index].answers" :key="i">
+      <label
+          :for="i"
+          :id="'choice'+i"
+          class="answer-items"
+          :class="choice.id === answersSelected.id ? 'bg-color-2-100' : 'bg-color-2-50'"
+          @click="setAnswer(choice)"
+      >
           {{ choice }}
-          <input :type="choice.answers.length>1? 'radio' : 'checkbox'" :id="i" name="choice" :value="i">
+          <input type="radio" :id="i" name="choice" :value="i">
       </label>
     </div>
-        <button class="btn-next" >next</button>
+        <button class="btn-next" @click="submitAnswer">next</button>
   </div>
 
   <div>user: {{ user.first_name }}</div>
+  {{ answersSelected }}
 </template>
 
 <script>
@@ -25,62 +32,28 @@ export default {
     return {
       index: 0,
       progress: 1,
-      answers: {},
-      showExplanation: {},
-      showResults: false,
-      questions: [
-        {
-          id: 1,
-          text: 'What is the capital of France?',
-          answers: [
-            { id: 1, text: 'Paris' },
-            { id: 2, text: 'London' },
-            { id: 3, text: 'Madrid' },
-            { id: 4, text: 'Berlin' },
-          ],
-          correctAnswer: 1,
-          explanation: 'Paris is the capital of France.',
-        },
-        {
-          id: 2,
-          text: 'What is the largest planet in our solar system?',
-          answers: [
-            { id: 1, text: 'Mars' },
-            { id: 2, text: 'Jupiter' },
-            { id: 3, text: 'Venus' },
-            { id: 4, text: 'Saturn' },
-          ],
-          correctAnswer: 2,
-          explanation: 'Jupiter is the largest planet in our solar system.',
-        },
-      ],
+      answersSelected: {},
+      showExplanation: false
     };
   },
   computed: {
-    progressPercentage() {
-      return (this.progress / this.quiz.questions.length) * 100 + "%";
-    },
-    correctAnswers() {
-      return this.quiz.questions.filter(
-        (question) => this.answers[question.id] === question.correctAnswer
-      ).length;
-    },
-    
     user(){
       return this.$store.state.user
-    } 
+    },
+    questions(){
+      return this.$store.getters.getQuestion;
+    }
   },
   methods: {
-    submitAnswer(questionId) {
-      if (!this.answers[questionId]) {
-        alert("Please select an answer first.");
-        return;
+    setAnswer(answer){
+      this.answersSelected = answer
+    },
+    submitAnswer() {
+      if( !this.answersSelected.id ) {
+        alert('please select one answer!')
       }
-
-      if (this.progress === this.quiz.questions.length) {
-        this.showResults = true;
-      } else {
-        this.progress++;
+      else {
+        console.log('good')
       }
     },
     getAnswerText(question, answerId) {
