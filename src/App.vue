@@ -36,9 +36,6 @@
   </div>
 </template>
 
-<style>
-
-</style>
 <script>
 import SideBar from '@/components/SideBar.vue'
 export default{
