@@ -329,10 +329,11 @@
     row-gap: 50px;
     align-items: center;
     list-style: none;
+    margin-left: -2rem;
   }
   aside ul li {
     padding: 3vh;
-    width: 80%;
+    width: 8rem;
     border-radius: 15px;
     background-color: rgba(65, 65, 178, 0.2);
   }
@@ -488,9 +489,9 @@
     color: #FEFEFE;
   }
   .quiz-container .answer .answer-items {
-    position: relative;
     padding: 2rem;
     border-radius: 10px;
+    min-width: 100%;
   }
   .quiz-container .answer .answer-items input {
     position: absolute;
@@ -511,6 +512,7 @@
     border: none;
     position: relative;
     left: -40%;
+    margin-top: 1rem;
   }
   .quiz-container .btn-next:hover {
     background-color: #4141B2;

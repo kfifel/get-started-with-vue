@@ -21,6 +21,7 @@ const store = createStore({
                     ],
                     correctAnswer: 1,
                     explanation: 'Vue.js can be used to create dynamic frontend components that can be included in Laravel Blade templates to create an interactive UI.',
+                    userAnswer: null
                 },
                 {
                     id: 2,
@@ -33,6 +34,7 @@ const store = createStore({
                     ],
                     correctAnswer: 1,
                     explanation: 'Laravel routing system can be used to define routes that map to Vue.js components, allowing the backend to handle requests from the frontend.',
+                    userAnswer: null
                 },
                 {
                     id: 3,
@@ -45,6 +47,7 @@ const store = createStore({
                     ],
                     correctAnswer: 1,
                     explanation: 'Vue.js components can be included within Laravel Blade templates as custom HTML tags, allowing the Vue.js component to be rendered within the Blade template.',
+                    userAnswer: null
                 },
                 {
                     id: 4,
@@ -57,6 +60,7 @@ const store = createStore({
                     ],
                     correctAnswer: 1,
                     explanation: 'You can use Laravel Sanctum to generate API tokens for Vue.js requests to authenticate users and protect routes and resources.',
+                    userAnswer: null
                 },
                 {
                     id: 5,
@@ -69,6 +73,7 @@ const store = createStore({
                     ],
                     correctAnswer: 3,
                     explanation: 'Vue.js is often considered to have a simpler API and be easier to learn, while React is known for its more advanced and powerful features, which can make it more challenging for beginners.',
+                    userAnswer: null
                 },
                 {
                     id: 6,
@@ -81,6 +86,7 @@ const store = createStore({
                     ],
                     correctAnswer: 2,
                     explanation: 'Vuex is a state management library for Vue.js, which provides a centralized store for managing application state and facilitates communication between components.',
+                    userAnswer: null
                 },
                 {
                     id: 7,
@@ -93,10 +99,9 @@ const store = createStore({
                     ],
                     correctAnswer: 1,
                     explanation: 'Laravel Mix is a build tool for Laravel applications that simplifies the process of building and compiling frontend assets such as CSS and JavaScript.',
+                    userAnswer: null
                 },
             ],
-
-            correctAnswers: 0,
         }
     },
 
@@ -105,23 +110,32 @@ const store = createStore({
             return [...state.questions].sort(()=>Math.random() - 0.5);
         },
         getCorrectAnswers(state){
-            return state.correctAnswers;
+            let countCorrectAnswers = 0;
+            state.questions.forEach(e=>{
+                if(e.userAnswer)
+                    countCorrectAnswers++
+            });
+            return countCorrectAnswers;
         },
-        setDefaultCorrectAnswer(state){
-            state.correctAnswers = 0;
-        }
-    },
-
-    actions: {
-        updateValue({commit}, payload) {
-            commit('updateValue', payload);
+        searchQuestionById(state, id) {
+            const [question] = state.questions.filter(question => question.id === id);
+            return question??null;
         }
     },
 
     mutations: {
-        updateResponses(state, payload) {
-            state.value = payload;
-        }
+        setCorrectAnswer(state, id) {
+            const [question] = state.questions.filter(question => question.id === id);
+            if (question) {
+                question.userAnswer = true;
+            }
+        },
+        setWrongAnswer(state, id) {
+            let [question] = state.questions.filter(question => question.id === id);
+            if (question) {
+                question.userAnswer = false;
+            }
+        },
     }
 });
 

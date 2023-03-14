@@ -4,7 +4,7 @@
     </div>
     <div class="nav-header">
         <ul v-for="(nav, index) of navs" :key="index">
-                <router-link :to="nav.path" class="a">
+                <router-link :to="nav.path">
                     <li>
                         <h3>{{ nav.title }}</h3>
                     </li>
@@ -22,10 +22,6 @@ export default {
         {
           path :'/',
           title: 'home'
-        }, 
-        {
-          path :'/about',
-          title: 'about'
         },
         {
           path :'/quiz',
