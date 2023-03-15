@@ -25,13 +25,20 @@
     </div>
   </div>
 
-  <div>
+  <div class="p-5">
     <h1>Home page for quiz</h1>
     <ul>
       <li>
           this web site will offer to you a quiz
       </li>
     </ul>
+
+    <button 
+          class="btn btn-success"
+          @:click="start"
+    >
+        let's start 
+    </button>
   </div>
 </template>
 
@@ -59,6 +66,9 @@ export default {
       this.message = ''
       this.formData.first_name = ''
       this.formData.last_name = ''
+    },
+    start(){
+      this.$router.push('/quiz');
     }
   },
 }
