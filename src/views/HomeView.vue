@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     
-    <HelloWorld data="hellow from khalid" />
+    <HelloWorld data="Quiz App" />
   </div>
 </template>
 

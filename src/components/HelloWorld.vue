@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="hello" v-if="false">
     <h2 class="text-green">{{ data }}</h2>
 
     <div class="container">
@@ -23,7 +23,16 @@
     <div class="notification bg-blue">
         {{ message }}
     </div>
-  </div>  
+  </div>
+
+  <div>
+    <h1>Home page for quiz</h1>
+    <ul>
+      <li>
+          this web site will offer to you a quiz
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>

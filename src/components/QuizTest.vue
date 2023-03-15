@@ -29,23 +29,16 @@
           next
         </button>
   </div>
-
-  <div>user: {{ user.first_name }}</div>
-  {{ selectedAnswer }} <br>
-   {{ nextDisabled }}
 </template>
 
 <script>
-import { ref } from 'vue';
 export default {
   data() {
     return {
       index: 0,
-      progress: 1,
       selectedAnswer: {},
-      showExplanation: false,
       count: 20,
-      nextDisabled: ref(true)
+      nextDisabled: true
     };
   },
   computed: {
